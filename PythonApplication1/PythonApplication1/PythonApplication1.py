@@ -1,6 +1,7 @@
 import sys
 from PySide.QtCore import *
 from PySide.QtGui import *
+from turtle import *
 
 class Simple_drawing_window(QWidget):
     def __init__(self):
@@ -30,6 +31,85 @@ class Simple_drawing_window(QWidget):
         p.drawImage(QRect(200, 100, 320, 320), self.rabbit)
         p.end()
 
+
+class Disk:
+    def __init__(self, name, x, y, w, h, c):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.c = c
+
+    def showdisk(self):
+        color(self.c)
+        penup()
+        setpos(self.x, self.y)
+        begin_fill()
+        pendown()
+        fd(self.w/2)
+        lt(90)
+        fd(self.h)
+        lt(90)
+        fd(self.w)
+        lt(90)
+        fd(self.h)
+        lt(90)
+        fd(self.w/2)
+        end_fill()
+        penup()
+
+    def newPos(self, x, y):
+        penup()
+        goto(x, y)
+        pendown()
+        
+
+    def cleardisk(self):
+        clear()
+        penup()
+        goto(self.x, self.y)
+        pendown()
+
+class Pole:
+    def __init__(self, name, stack, top, x, y, w, h, c):
+        self.name = name
+        self.stack = stack
+        self.top = top
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.c = c
+
+    def showpole(self):
+        color(self.c)
+        penup()
+        setpos(self.x, self.y)
+        begin_fill()
+        pendown()
+        fd(self.w/2)
+        lt(90)
+        fd(self.h)
+        lt(90)
+        fd(self.w)
+        lt(90)
+        fd(self.h)
+        lt(90)
+        fd(self.w/2)
+        end_fill()
+        penup()
+
+    def pushdisk(disk):
+        disk.showdisk()
+        self.stack.insert(disk)
+        
+
+
+
+
+
+
+'''
 class Simple_drawing_window1(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -68,7 +148,6 @@ class Simple_drawing_window2(QWidget):
 
         p.end()
 
-
 class Simple_drawing_window3(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -87,10 +166,13 @@ class Simple_drawing_window3(QWidget):
 
 
         p.end()
+'''
+
 
 def main():
     app = QApplication(sys.argv)
 
+    '''
     w1 = Simple_drawing_window1()
     w1.show()
 
@@ -99,6 +181,17 @@ def main():
 
     w3 = Simple_drawing_window3()
     w3.show()
+    '''
+    '''
+    a = Disk('jane', 50, 50, 100, 50, 'blue')
+    a.showdisk()
+    a.newPos(0,0)
+    a.cleardisk()
+    '''
+
+    b = Pole('miki', [], 0, 50, 50, 50, 300, 'green')
+    b.showpole()
+
 
     return app.exec_()
 
